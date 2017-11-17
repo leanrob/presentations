@@ -1,0 +1,453 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>React Interactive Presentation : Rob Byrne</title>
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/black.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<!-- ******** -->
+				<!-- Title Page Section -->
+				<!-- ******** -->
+				<section id="title">
+					<h1>React + Redux</h1>
+					<p>An introduction to the basic concepts</p>
+					<p>By: Robert Byrne </p>
+					<a href="https://github.com/leanrob/teaching-react-interactive">@leanrob</a>
+				</section>
+				<!-- ******** -->
+				<!-- Overview Section -->
+				<!-- ******** -->
+				<section id="overview">
+					<section>
+						<h1>Overview</h1>
+						<h3>React</h3>
+						<div style="text-align: left">
+							<ul>
+								<li>React</li>
+								<ul>
+									<li>1.1 JSX Basics</li>
+									<ul>
+										<li>1.1.1 Logic to choose components</li>
+									</ul>
+									<li>1.2 Props and State</li>
+									<ul>
+										<li>1.2.1 State</li>
+									</ul>
+									<li>1.3 Components</li>
+									<ul>
+										<li>1.3.1 ES6 Class Components</li>
+									</ul>							
+								</ul>
+							</ul>
+						</div>
+					</section>
+					<section>
+						<h3>Redux</h3>
+						<div style="text-align: left">
+							<ul>
+								<li>Redux</li>
+								<ul>
+									<li>2.1 Actions</li>
+									<li>2.2 Reducers</li>
+									<li>2.3 Store</li>
+									<li>2.4 Data Flow</li>
+								</ul>
+							</ul>
+						</div>
+					</section>
+				</section>
+				<!-- ******** -->
+				<!-- React Section Title Page -->
+				<!-- ******** -->
+				<section id="react">
+					<h1>React</h1>
+					<p>We will cover some of the React basics including...</p>
+					<ul>
+						<li>what CAN be done</li>
+						<li>what SHOULD be done</li>
+						<li>why we do things how we do</li>
+						<li>how we can improve</li>
+					</ul>
+					<p style="font-size: 22px;">ps. this talk to prompt discussion and evulve over time, so chime in!</p>
+				</section>
+				<!-- ******** -->
+				<!-- 1.1 JSX Section -->
+				<!-- ******** -->
+				<section id="jsx">
+					<section>
+						<h1>1.1 JSX</h1>
+						<p>Files:</p>
+						<p style="font-size: 20px;">src/containers/app/index.js</p>
+						<p style="font-size: 20px;">src/containers/about/index.js</p>
+						<p style="font-size: 20px;">src/containers/about/aboutUs.js</p>
+					</section>
+					<section>
+						<h3>What is jsx?</h3>
+						<p>Simplist way to view it is html in javascript.</p>
+						<pre class="stretch" style="font-size: 20px;">
+							<code class="javascript" title="jsx counter">
+class App extends React.Component {
+    constructor(props) {
+        this.state = {
+            count: 0
+        }
+    }
+    onClick(e) {
+        this.setState({
+            count: this.state.count + 1
+        });
+    }
+    render() {
+        return (
+            <div className="counter">
+                <h1>{this.state.count}</h1>
+                <button onClick={this.onClick.bind(this)}>Count Up!!</button>
+            </div>
+        )
+    }
+}
+							</code>
+						</pre>
+						<aside class="notes">
+							The JSX must me rendered in the end.
+							Other smaller components can sinply return some jsx which will eventually be rendered by a parent component.
+						</aside>
+					</section>
+				</section>
+				<!-- ******** -->
+				<!-- 1.2 Props and State Section -->
+				<!-- ******** -->
+				<section id="props">
+					<section>
+						<h1>1.2 Props and State</h1>
+						<p>Files:</p>
+						<p style="font-size: 20px;">src/containers/about/aboutClassComponent.js</p>
+						<p style="font-size: 20px;">src/containers/home/index.js</p>
+					</section>
+					<section>
+						<h2>What are props</h2>
+						<h5>Props are the input that a react component intakes</h5>
+						<ul>
+							<li>> <span>props are immutable</span></li>
+							<li>> <span>props only flow downward through components parent -> children</span></li>
+							<li>> <span>components know they need to reload when their props change</span></li>
+						</ul>
+					</section>
+					<section>
+						<h5>ES6 Destructuring</h5>
+						<pre class="stretch" style="font-size: 20px;">
+							<code class="javascript" title="jsx counter">
+const AboutUs = ({ name, occupation, yearsActive }) => {
+// const AboutUs = ({ props }) => {
+// const { name, occupation, yearsActive, thingsWeDo } = props;
+
+  return (
+    <div>
+      <h1>{name}</h1>
+      <p>{occupation}</p>
+      <p>{yearsActive}</p>
+      {doWeHaveJobs(thingsWeDo)}
+    </div>
+  )
+};
+
+AboutUs.propTypes = {
+  name: PropTypes.string.isRequired,
+  occupation: PropTypes.string.isRequired,
+  yearsActive: PropTypes.number,
+};
+AboutUs.defaultProps = {
+  name: "John Doe",
+  occupation: "Does Nothing",
+  yearsActive: 0,
+};
+
+export default AboutUs;
+							</code>
+						</pre>
+					</section>
+					<section>
+						<h1>1.2.1 State</h1>
+						<div>
+							<p>State is what decides when and how a react component updates</p>
+							<h5><span style="color: #60D5FB">CAN</span> state be manipulated directly?</h5>
+							<p style="font-size: 20px;">yes.</p>
+							<h5><span style="color: #60D5FB">SHOULD</span> we manipulate the state directly</h5>
+							<p>NO.</p>
+							<p style="font-size: 18px;">More on this when we look at <a href="#/redux">Redux</a></p>
+						</div>
+					</section>
+				</section>
+				<!-- ******** -->
+				<!-- 1.3 Components Section -->
+				<!-- ******** -->
+				<section id="components">
+					<section>
+						<h1>1.3 Components</h1>
+						<p>Files:</p>
+						<p style="font-size: 20px;">src/containers/about/aboutClassComponent.js</p>
+						<p style="font-size: 20px;">src/containers/about/aboutUs.js</p>
+					</section>
+					<section>
+						<h2>Class Component</h2>
+						<p>Allows for lifecycle methodes.</p>
+						<p>Should not be overused</p>
+						<p style="font-size: 18px; color: #60D5FB">See file `src/containers/about/aboutClassComponent.js`</p>
+					</section>
+					<section>
+						<h2>Stateless Functional Components</h2>
+						<p>Very easy to initialize and control.</p>
+						<p>Easy to pass props into.</p>
+						<p style="font-size: 18px">See <a href="https://hackernoon.com/react-stateless-functional-components-nine-wins-you-might-have-overlooked-997b0d933dbc">https://hackernoon.com/react-stateless-functional-components-nine-wins-you-might-have-overlooked-997b0d933dbc</a> for more.</p>
+						<p style="font-size: 18px; color: #60D5FB">See file `src/containers/about/aboutUs.js`</p>
+					</section>
+				</section>
+				<!-- ******** -->
+				<!-- Redux Section Title Page -->
+				<!-- ******** -->
+				<section id="redux">
+					<section>
+						<h1>Redux</h1>
+						<p>We will cover some of the Redux basics including...</p>
+					<ul>
+						<li>what is Redux</li>
+						<li>how does Redux work</li>
+						<li>how data flow works in Redux</li>
+						<li>why we never manipulate state directly</li>
+					</ul>
+					<p style="font-size: 22px;">
+						check out 
+						<a href="https://redux.js.org/docs/basics/">https://redux.js.org/docs/basics/</a>
+						for more details.
+					</p>
+					</section>
+					<section>
+						<h2 style="color: #60D5FB">Redux Concepts</h2>
+						<h4><span style="text-decoration: underline;">3</span> Things to consider</h5>
+						<p>1. The Store is the single source of truth</p>
+						<aside class="notes">
+							1: This is why we never manipulate the state directly, it violates this principle. Leading to 2...
+						</aside>
+						<p>2. State is Read-Only</p>
+						<p>3. Reducers (pure functions) make al changes</p>
+						<aside class="notes">
+							3: More on this in the reducers section
+						</aside>
+					</section>
+				</section>
+				<!-- ******** -->
+				<!-- 2.1 Actions Section -->
+				<!-- ******** -->
+				<section id="actions">
+					<section>
+						<h1>2.1 Actions</h1>
+						<p>Files:</p>
+						<p style="font-size: 20px;">src/modules/actions/counterActions.js</p>
+						<p style="font-size: 20px;">src/modules/index.js</p>
+						<p style="font-size: 20px;">src/containers/home/index.js</p>
+					</section>
+					<section>
+						<h3>What are actions?</h3>
+						<p>Actions are PAYLOADS of INFORMATION</p>
+						<p>They (and only they) pass data from the application to the store</p>
+						<p>These payloads are sent using...</p>
+						<pre style="font-size: 20px;">
+							<code class="javascript" title="dispatch to store">store.dispatch();</code>
+						</pre>
+					</section>
+					<section>
+						<h3></h3>
+						<pre style="font-size: 20px;">
+							<code class="javascript" title="action">export const INCREMENT_REQUESTED = 'counter/INCREMENT_REQUESTED'
+export const INCREMENT = 'counter/INCREMENT'
+export const DECREMENT_REQUESTED = 'counter/DECREMENT_REQUESTED'
+export const DECREMENT = 'counter/DECREMENT'
+
+export const increment = () => {
+	return dispatch => {
+		dispatch({
+			type: INCREMENT_REQUESTED
+		})
+
+		dispatch({
+			type: INCREMENT
+		})
+	}
+}</code>
+						</pre>
+					</section>
+				</section>
+				<!-- ******** -->
+				<!-- 2.2 Reducers Section -->
+				<!-- ******** -->
+				<section id="reducers">
+					<section>
+						<h1>2.2 Reducers</h1>
+						<p>Files:</p>
+						<p style="font-size: 20px;">src/modules/actions/counterActions.js</p>
+						<p style="font-size: 20px;">src/modules/reducers/counterReducers.js</p>
+						<p style="font-size: 20px;">src/modules/index.js</p>
+						<p style="font-size: 20px;">src/containers/home/index.js</p>
+					</section>
+					<section>
+						<h3>What do reducers do?</h3>
+						<p>> They spead out the current or initial state</p>
+						<p>-> They manipulate or add to the state</p>
+						<p>--> They return the new state</p>
+						<p>[state is <span style="color: #60D5FB">never</span> manipulated, a new state is always made and supplied]</p>
+					</section>
+					<section>
+						<h3>Simple Reducer Example</h3>
+						<pre class="stretch" style="font-size: 20px;">
+							<code class="javascript" title="dispatch to store">const counter = (state = initialState, action) => {
+	switch (action.type) {
+		case INCREMENT:
+			return {
+				...state,
+				count: state.count + 1,
+				isIncrementing: !state.isIncrementing
+			}
+		case DECREMENT:
+			return {
+				...state,
+				count: state.count - 1,
+				isDecrementing: !state.isDecrementing
+			}
+
+		default:
+			return state
+	}
+}
+export default counter;</code>
+						</pre>
+					</section>
+				</section>
+				<!-- ******** -->
+				<!-- 2.3 Store Section -->
+				<!-- ******** -->
+				<section id="store">
+					<section>
+						<h1>2.3 Store</h1>
+						<p>Files:</p>
+						<p style="font-size: 20px;">src/store.js</p>
+					</section>
+					<section>
+						<h3>What is the store</h3>
+						<p>Store brings it all together</p>
+						<ul>
+							<li>1. Reducers</li>
+							<li>2. InitialState</li>
+							<li>3. Middleware</li>
+						</ul>
+					</section>
+				</section>
+				<!-- ******** -->
+				<!-- 2.4 Data Flow Section -->
+				<!-- ******** -->
+				<section id="data-flow">
+					<section>
+						<h1>2.4 Data Flow</h1>
+						<p>Files:</p>
+						<p style="font-size: 20px;">All of them...</p>
+					</section>
+					<section>
+						<h3>Redux Data Flow</h3>
+						<img src="./assets/images/Redux-DataFlow.gif" alt="Redux Data Flow">
+					</section>
+					<section>
+						<ul>
+							<li>1. Call store.Dispatch() with the an action</li>
+							<li>2. Reducer called based on the action above</li>
+							<li>3. Root reducer may combine output of multiple reducers into single state</li>
+							<li>4. Return new state tree to the application</li>
+						</ul>
+					</section>
+				</section>
+				<section id="apendix">
+					<section>
+						<h1>Apendix</h1>
+					</section>
+					<section>
+						<h1>How we model components</h1>
+						<p>[This section is handled best with a whiteboard example.]</p>
+						<p>Pick a scrren or component that is common and then break it down.</p>
+						<p>What data is needed? What actions need to be performed?...</p>
+					</section>
+					<section>
+						<h1>Redux Devtools</h1>
+						<p><a href="https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd?hl=en">Reducx DevTools</a></p>
+						<p>By: zalmoxisus</p>
+					</section>
+				</section>
+				<!-- ******** -->
+				<!-- Final Slide -->
+				<!-- ******** -->
+				<section>
+					<h1>FIN</h1>
+					<a href="#/title">[ctrl + c]</a>
+				</section>
+				<section>
+					<section>
+						<h2></h2>
+						<p>Slides can be nested inside of each other.</p>
+						<p>Use the <em>Space</em> key to navigate through all slides.</p>
+						<br>
+						<a href="#" class="navigate-down">
+							<img width="178" height="238" data-src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Down arrow">
+						</a>
+					</section>
+					<section>
+						<h2>Basement Level 1</h2>
+						<p>Nested slides are useful for adding additional detail underneath a high level horizontal slide.</p>
+					</section>
+					<section>
+						<h2>Basement Level 2</h2>
+						<p>That's it, time to go back up.</p>
+						<br>
+						<a href="#/2">
+							<img width="178" height="238" data-src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Up arrow" style="transform: rotate(180deg); -webkit-transform: rotate(180deg);">
+						</a>
+					</section>
+				</section>
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+		</script>
+	</body>
+</html>
