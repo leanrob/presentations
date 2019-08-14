@@ -1766,3 +1766,10 @@ $notesWidthPercent: 25%;
 .zoomed .reveal .roll span:after {
 	visibility: hidden;
 }
+
+/*********************************************
+ * USER ADDED STYLES
+ *********************************************/
+.small-code-container {
+	font-family: 'Fira Code' !important; font-size: 16px; line-height: 1.2em;
+}

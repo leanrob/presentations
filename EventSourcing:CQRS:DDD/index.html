@@ -8,7 +8,7 @@
 
 		<link rel="stylesheet" href="css/reset.css">
 		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/black.css">
+		<link rel="stylesheet" href="css/theme/blood.css">
 
 		<!-- Theme used for syntax highlighting of code -->
 		<link rel="stylesheet" href="lib/css/monokai.css">
@@ -47,8 +47,9 @@
 						<h3>Command Query Responsibility Segregation</h3>
 					</section>
 					<section>
-						<pre><code class="hljs rust" data-line-numbers="6-15, 19-46">
-#[derive(Debug)]
+						<div style="display: flex">
+							<div style="width: 50%">
+								<pre><code class="hljs rust small-code-container" data-line-numbers="6-15, 19-46">#[derive(Debug)]
 pub enum State {
     Start,
     Transient,
@@ -65,6 +66,27 @@ impl From<&'a str> for State {
     }
 }
 						</code></pre>
+							</div>
+							<div style="width: 50%">
+<pre><code class="hljs rust" style="font-size: 16px; line-height: 1.2em;" data-line-numbers="6-15, 19-46">#[derive(Debug)]
+pub enum State {
+    Start,
+    Transient,
+    Closed,
+}
+
+impl From<&'a str> for State {
+    fn from(s: &'a str) -> Self {
+        match s {
+            "start" => State::Start,
+            "closed" => State::Closed,
+            _ => unreachable!(),
+        }
+    }
+}
+						</code></pre>
+							</div>
+						</div>
 						<aside class="notes">
 							Oh hey, these are some notes. They'll be hidden in your presentation, but you can see them if you open the speaker notes window (hit »S« on your keyboard).
 						</aside>
