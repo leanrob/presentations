@@ -1,174 +1,354 @@
 <!doctype html>
-<html>
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<html lang="en">
 
-		<title>reveal.js</title>
+<head>
+	<meta charset="utf-8">
 
-		<link rel="stylesheet" href="css/reset.css">
-		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/blood.css">
+	<title>reveal.js – The HTML Presentation Framework</title>
 
-		<!-- Theme used for syntax highlighting of code -->
-		<link rel="stylesheet" href="lib/css/monokai.css">
+	<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+	<meta name="author" content="Hakim El Hattab">
 
-		<!-- Printing and PDF exports -->
-		<script>
-			var link = document.createElement( 'link' );
-			link.rel = 'stylesheet';
-			link.type = 'text/css';
-			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
-			document.getElementsByTagName( 'head' )[0].appendChild( link );
-		</script>
-	</head>
-	<body>
-		<div class="reveal">
-			<div class="slides">
-				<!--Header Section Slides-->
-				<section>
-					<h1>Building Event-Driven Systems</h1>
-					<h3>With E.S./D.D.D./C.Q.R.S.</h3>
-				</section>
-				<!--Overview Section Slides-->
-				<section>
-					<section>
-						<h1>Overview Section</h1>
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="stylesheet" href="css/reset.css">
+	<link rel="stylesheet" href="css/reveal.css">
+	<link rel="stylesheet" href="css/theme/black.css" id="theme">
+
+	<!-- Theme used for syntax highlighting of code -->
+	<link rel="stylesheet" href="lib/css/monokai.css">
+
+	<!-- Printing and PDF exports -->
+	<script>
+		var link = document.createElement( 'link' );
+		link.rel = 'stylesheet';
+		link.type = 'text/css';
+		link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+		document.getElementsByTagName( 'head' )[0].appendChild( link );
+	</script>
+
+	<!--[if lt IE 9]>
+	<script src="lib/js/html5shiv.js"></script>
+	<![endif]-->
+</head>
+
+<body>
+
+<div class="reveal">
+
+	<!-- Any section element inside of this container is displayed as a slide -->
+	<div class="slides">
+
+		<!-- 1 TITLE SLIDE -->
+		<section>
+			<h2 style="color: #5cc9f5">Event Driven Systems</h2>
+			<h4>Event Sourcing</h4>
+			<h4>C.Q.R.S.</h4>
+			<p>(Command Query Responsibility Seggregation)</p>
+			<h4>D.D.D.</h4>
+			<p>(Domain Driven Design)</p>
+		</section>
+
+		<!-- 2 OVERVIEW SLIDES -->
+		<section>
+			<!-- 2.1 -->
+			<section>
+				<h2>Overview</h2>
+			</section>
+			<!-- 2.2 -->
+			<section>
+				<h2>The Goal</h2>
+				<p>The goal of this presentation is to get an overview of event-driven systems and discuss the advantages of them (in the right context) for both software development and business development teams.</p>
+			</section>
+			<!-- 2.3 -->
+			<section>
+				<h3>What will be be covering</h3>
+				<ol>
+					<li>Overview (We are here)</li>
+					<li>D.D.D. Section</li>
+					<li>C.Q.R.S Section</li>
+					<li>Event sourcing Section</li>
+					<li>Event Storming Section</li>
+					<li>Bringing Business and Development together</li>
+					<li>Code Examples and Docs</li>
+					<li>Conclusion</li>
+				</ol>
+			</section>
+			<section>
+				<h3>D.D.D. - Domain Driven Design</h3>
+				<p>
+					Domain Driven Design is the idea that a software system should match the domain that it is being built in.
+				</p>
+				<ul>
+					<li>Context</li>
+					<li>Domain</li>
+					<li>Model</li>
+					<li>Ubiquitous Language</li>
+				</ul>
+			</section>
+			<section>
+				<h3>C.Q.R.S. - Command Query Responsibility Separation</h3>
+				<p>
+					C.Q.R.S. is the concept that the command that a user sends to perform should be separated from the events that change the system.
+				</p>
+				<ul>
+					<li>Creates an audit log</li>
+					<li>Allows the system to be extendable even for past events</li>
+					<li>Scalability</li>
+				</ul>
+			</section>
+			<section>
+				<h3>Event Sourcing</h3>
+				<p>
+					Instead of keeping a record of only the current state of the data within a system, Event Sourcing keeps a record of the full series of actions taken on thats data
+				</p>
+				<ul>
+					<li>Append-only system</li>
+					<li>Events understandable for Domain Experts</li>
+					<li>Event Store</li>
+				</ul>
+			</section>
+		</section>
+
+		<!-- 5 D.D.D. SLIDES -->
+		<section>
+			<section>
+				<h2>D.D.D.</h2>
+				<p>Domain Driven Design</p>
+			</section>
+			<section>
+				<h3>Context</h3>
+			</section>
+			<section>
+				<h3>Domain</h3>
+			</section>
+			<section>
+				<h3>Model</h3>
+			</section>
+			<section>
+				<h3>Ubiquitous Language</h3>
+			</section>
+			<section>
+				<h3>Examples:</h3>
+			</section>
+			<section>
+				<h3>Review</h3>
+			</section>
+		</section>
+
+		<!-- 4 C.Q.R.S. SLIDES -->
+		<section>
+			<section>
+				<h2>C.Q.R.S.</h2>
+				<p>Command Query Responsibility Segregation</p>
+			</section>
+			<section>
+				<h3>What is C.Q.R.S.</h3>
+			</section>
+			<section>
+				<h3>How does it work?</h3>
+			</section>
+			<section>
+				<h3>Pros and Cons</h3>
+			</section>
+			<section>
+				<h3>Diagrams</h3>
+			</section>
+		</section>
+
+		<!-- 3 EVENT SOURCING SLIDES -->
+		<section>
+			<section>
+				<h2>Event Sourcing</h2>
+			</section>
+			<section data-markdown="example.md" data-separator="^\n\n\n"
+					 data-separator-vertical="^\n\n" data-separator-notes="^Note:">
+				<h3>What is event sourcing?</h3>
+
+				Notes:
+				These are notes
+
+				Event sourcing is life. Or, that is, life is event-based.
+
+				Everything in life at every level is an event that is stored in the event store of your life.
+
+				At some point you held money in your hands and had a bank account, from then on your personal finances are just a series of events (some recorded and some not) that lead you up to your current financial situation.
+
+				To take things deeper, people own psychies are event-driven, we are the person we are today because of the events and inputs our brain provided us up to this point.
+
+				-----
+
+				But enough of the abstract, let's get more concrete.
+
+				Event sourcing the idea that the state and data of a system is directly derived from a series of events,
+				and that if those events were played back in the exact same order then they would provide an exact match in data and result.
+
+				-----
+
+				## Events, What are they and how to we get them?
+
+				Events come from the real-world, domain experts who are knowledgable of the system that exists in the real-world will be used to extrpolate the events used in the system.
+				The events of a system will ideally be an exact (or at least very close) representation of the real-world system.
+			</section>
+			<section>
+				<h3>How event souring works</h3>
+			</section>
+			<section>
+				<h3>Pros and Cons</h3>
+			</section>
+			<section>
+				<h3>When to use event sourcing</h3>
+			</section>
+			<section>
+				<h3>Diagrams</h3>
+			</section>
+			<section>
+				<h3>Event Store Docs</h3>
+			</section>
+			<section>
+				<h3>Resources & Links</h3>
+			</section>
+		</section>
+
+		<!-- 6 EVENT STORMING SLIDES -->
+		<section>
+			<section>
+				<h2>Event Storming</h2>
+				<p>Designing your event based system</p>
+			</section>
+			<section>
+				<h3>The setup</h3>
+			</section>
+			<section>
+				<h3>The Process</h3>
+			</section>
+			<section>
+				<h3>Why is this important?</h3>
+			</section>
+			<section>
+				<h3>Resources & Links</h3>
+			</section>
+		</section>
+
+		<!-- 7 BUSINESS VALUE & DEVELOPER VALUE SLIDES -->
+		<section>
+
+		</section>
+
+		<!-- EXAMPLE SLIDES -->
+		<section>
+			<section>
+				<h1>Example Slides</h1>
+				<p>These slides are to be copied and used when making slides with specific features</p>
+			</section>
+			<!-- Example of Markdown Slide -->
+			<!-- Example of Markdown Slide inside a code section -->
+			<section data-markdown>
+				<script type="text/template">
+					## Markdown support
+
+					Write content using inline or external Markdown.
+					Instructions and more info available in the [readme](https://github.com/hakimel/reveal.js#markdown).
+
+					```
+					<section data-markdown>
+						## Markdown support
+						Write content using inline or external Markdown.
+						Instructions and more info available in the [readme](https://github.com/hakimel/reveal.js#markdown).
 					</section>
-					<section>
-						<h2>Event Sourcing</h2>
-					</section>
-					<section>
-						<h2>D.D.D.</h2>
-						<h3>Domain Driven Design</h3>
-					</section>
-					<section>
-						<h2>C.Q.R.S.</h2>
-						<h3>Command Query Responsibility Segregation</h3>
-					</section>
-					<section>
-						<div style="display: flex">
-							<div style="width: 50%">
-								<pre><code class="hljs rust small-code-container" data-line-numbers="6-15, 19-46">#[derive(Debug)]
-pub enum State {
-    Start,
-    Transient,
-    Closed,
+					```
+				</script>
+			</section>
+			<!-- Example of Fragments with styles -->
+			<section>
+				<h2>Fragment Styles</h2>
+				<p>There's different types of fragments, like:</p>
+				<p class="fragment grow">grow</p>
+				<p class="fragment shrink">shrink</p>
+				<p class="fragment fade-out">fade-out</p>
+				<p>
+					<span style="display: inline-block;" class="fragment fade-right">fade-right, </span>
+					<span style="display: inline-block;" class="fragment fade-up">up, </span>
+					<span style="display: inline-block;" class="fragment fade-down">down, </span>
+					<span style="display: inline-block;" class="fragment fade-left">left</span>
+				</p>
+				<p class="fragment fade-in-then-out">fade-in-then-out</p>
+				<p class="fragment fade-in-then-semi-out">fade-in-then-semi-out</p>
+				<p>Highlight <span class="fragment highlight-red">red</span> <span class="fragment highlight-blue">blue</span> <span class="fragment highlight-green">green</span></p>
+			</section>
+			<!-- Example of Backgrounds -->
+			<section data-background="http://i.giphy.com/90F8aUepslB84.gif">
+				<h2>... and GIFs!</h2>
+			</section>
+			<section data-background="https://s3.amazonaws.com/hakim-static/reveal-js/image-placeholder.png">
+				<h2>Image Backgrounds</h2>
+				<pre><code class="hljs html">&lt;section data-background="image.png"&gt;</code></pre>
+			</section>
+			<!-- Example of Pretty code formatting -->
+			<section>
+				<h2>Pretty Code</h2>
+				<pre><code class="hljs" data-trim data-line-numbers="4|9|4,8-11">
+import React, { useState } from 'react';
+
+function Example() {
+  const [count, setCount] = useState(0);
+
+  return (
+    &lt;div&gt;
+      &lt;p&gt;You clicked {count} times&lt;/p&gt;
+      &lt;button onClick={() =&gt; setCount(count + 1)}&gt;
+        Click me
+      &lt;/button&gt;
+    &lt;/div&gt;
+  );
 }
+					</code></pre>
+				<p>Code syntax highlighting courtesy of <a href="http://softwaremaniacs.org/soft/highlight/en/description/">highlight.js</a>.</p>
+			</section>
+			<!-- Example of IFrame Background -->
+			<section data-background-iframe="https://hakim.se" data-background-interactive>
+				<div style="position: absolute; width: 40%; right: 0; box-shadow: 0 1px 4px rgba(0,0,0,0.5), 0 5px 25px rgba(0,0,0,0.2); background-color: rgba(0, 0, 0, 0.9); color: #fff; padding: 20px; font-size: 20px; text-align: left;">
+					<h2>Iframe Backgrounds</h2>
+					<p>Since reveal.js runs on the web, you can easily embed other web content. Try interacting with the page in the background.</p>
+				</div>
+			</section>
+		</section>
+	</div>
 
-impl From<&'a str> for State {
-    fn from(s: &'a str) -> Self {
-        match s {
-            "start" => State::Start,
-            "closed" => State::Closed,
-            _ => unreachable!(),
-        }
-    }
-}
-						</code></pre>
-							</div>
-							<div style="width: 50%">
-<pre><code class="hljs rust" style="font-size: 16px; line-height: 1.2em;" data-line-numbers="6-15, 19-46">#[derive(Debug)]
-pub enum State {
-    Start,
-    Transient,
-    Closed,
-}
+</div>
 
-impl From<&'a str> for State {
-    fn from(s: &'a str) -> Self {
-        match s {
-            "start" => State::Start,
-            "closed" => State::Closed,
-            _ => unreachable!(),
-        }
-    }
-}
-						</code></pre>
-							</div>
-						</div>
-						<aside class="notes">
-							Oh hey, these are some notes. They'll be hidden in your presentation, but you can see them if you open the speaker notes window (hit »S« on your keyboard).
-						</aside>
-					</section>
-				</section>
-				<!--D.D.D Section-->
-				<section>
-					<section>
-						<h1>D.D.D.</h1>
-						<h3>Domain Driven Design</h3>
-					</section>
-				</section>
-				<!--C.Q.R.S. Section-->
-				<section>
-					<section>
-						<h1>C.Q.R.S.</h1>
-						<h3>Command Query Responsibility Segregation</h3>
-					</section>
-				</section>
-				<!--Event Sourcing Section-->
-				<section>
-					<section>
-						<h1>E.S.</h1>
-						<h3>Event Sourcing</h3>
-					</section>
-				</section>
-				<!--Event Storming Section-->
-				<section>
-					<section>
-						<h1>Event Storming</h1>
-					</section>
-				</section>
-				<!--Bringing It All Together Section Section-->
-				<section>
-					<section>
-						<h1>Bringing It All Together</h1>
-					</section>
-					<section>
-						<h4>Goal of this section:</h4>
-						<p>To bring all the concepts together and show some code examples of them in action.</p>
-						<p>Note: The code will be written in Rust, simply because it's the last language I build an event based system in.</p>
-					</section>
-				</section>
-				<section>
-					<section>
-						<h3>Some tech being used, why it is used and what does it do.</h3>
-					</section>
-					<section>
-						<h2>Rust</h2>
-						<br/>
-						<h4>Why rust?</h4>
-						<ul>
-							<li>Safety - Compile-time checks</li>
-							<li>Speed</li>
-							<li>Nerd bonus: WASM support growing</li>
-						</ul>
-						<br/>
-						<h4>Rust resources:</h4>
-						<ul>
-							<li><a href="https://www.rust-lang.org/">https://www.rust-lang.org/</a></li>
-							<li><a href="https://doc.rust-lang.org/rust-by-example/">Rust by Example</a></li>
-							<li><a href="https://www.techrepublic.com/article/rust-programming-language-seven-reasons-why-you-should-learn-it-in-2019/">Why use Rust?</a></li>
-						</ul>
-					</section>
-				</section>
-			</div>
-		</div>
+<script src="js/reveal.js"></script>
+<script src="plugin/markdown/marked.js"></script>
+<script src="plugin/markdown/markdown.js"></script>
 
-		<script src="js/reveal.js"></script>
+<script>
 
-		<script>
-			// More info about config & dependencies:
-			// - https://github.com/hakimel/reveal.js#configuration
-			// - https://github.com/hakimel/reveal.js#dependencies
-			Reveal.initialize({
-				dependencies: [
-					{ src: 'plugin/markdown/marked.js' },
-					{ src: 'plugin/markdown/markdown.js' },
-					{ src: 'plugin/notes/notes.js', async: true },
-					{ src: 'plugin/highlight/highlight.js', async: true }
-				]
-			});
-		</script>
-	</body>
+	// More info https://github.com/hakimel/reveal.js#configuration
+	Reveal.initialize({
+		controls: true,
+		progress: true,
+		center: true,
+		hash: true,
+
+		transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+		plugins: [ RevealMarkdown ],
+
+		// More info https://github.com/hakimel/reveal.js#dependencies
+		dependencies: [
+			{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+			{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+			{ src: 'plugin/highlight/highlight.js' },
+			{ src: 'plugin/search/search.js', async: true },
+			{ src: 'plugin/zoom-js/zoom.js', async: true },
+			{ src: 'plugin/notes/notes.js', async: true }
+		]
+	});
+
+</script>
+
+</body>
 </html>

@@ -19,7 +19,7 @@ module.exports = grunt => {
 				' * http://revealjs.com\n' +
 				' * MIT licensed\n' +
 				' *\n' +
-				' * Copyright (C) 2019 Hakim El Hattab, http://hakim.se\n' +
+				' * Copyright (C) 2020 Hakim El Hattab, http://hakim.se\n' +
 				' */'
 		},
 
@@ -142,7 +142,7 @@ module.exports = grunt => {
 				tasks: 'css-themes'
 			},
 			css: {
-				files: [ 'css/reveal.scss', 'css/custom.scss' ],
+				files: [ 'css/reveal.scss' ],
 				tasks: 'css-core'
 			},
 			test: {
